@@ -1,0 +1,149 @@
+.icon-row-container{
+   /*Sets width to be 100% of the viewport (the visable area of the web page)*/
+    width: 100vw;
+    /*Fixes the position of the icons banner to the top of the page (takes it out of the normal document flow)*/
+    position: fixed;
+    /*Sets the icons banner to be stacked on top of all other elements*/
+    z-index: 10;
+    background-color: #fff;
+  }
+  
+  .icon-row{
+    margin: 2% auto 0 auto;
+    /*Makes this element a container element for a CSS grid (grid layouts are in Media Queries)*/
+    display: grid;
+  }
+  
+  #html-logo{
+    /*Name used to assign a grid item to a specific grid area*/
+    grid-area: html-icon;
+  }
+
+  #css-logo{
+    grid-area: css-icon;
+  }
+
+  #js-logo{
+    grid-area: js-icon;
+  }
+
+  #react-logo{
+    grid-area: react-icon;
+  }
+
+  #angular-logo{
+    grid-area: angular-icon;
+  }
+
+  #vue-logo{
+    grid-area: vue-icon;
+  }
+
+  .icon-style{
+    width: 100%;
+    height: 110px;
+  }
+  
+  .icon-style:hover{
+    cursor: pointer;
+  }
+  
+  .chat-container{
+    grid-area: chat-container;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    /*For this grid creates 1 column at 100%*/
+    grid-template-columns: 100%;
+    /*Assigns the grid item to that column*/
+    grid-template-areas: 
+      "main-container";
+  }
+  
+  .main-container{
+    grid-area: main-container;
+    width: 100%;
+  }
+  
+  /*Media Query for screen sizes 1201px and up*/
+  @media (min-width: 1201px){
+    .icon-row{
+      /*Creates 6 equal sized columns*/
+      grid-template-columns: repeat(6, 1fr);
+      /*Assigns the grid items to these columns*/
+      grid-template-areas:
+        "html-icon css-icon js-icon react-icon angular-icon vue-icon"
+      ;
+    }
+    .chat-container{
+      padding-top: 10%;
+    }
+
+    .chat-container, .icon-row{
+      width: 60%;
+    }
+    
+  }
+
+  @media (min-width: 891px) and (max-width: 1200px) {
+    .icon-row{
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        "html-icon css-icon js-icon react-icon angular-icon vue-icon"
+      ;
+    }
+    .chat-container{
+      padding-top: 15%;
+    }
+    .chat-container, .icon-row{
+      width: 60%;
+    }
+  }
+  
+  @media (min-width: 713px) and (max-width: 890px) {
+    .icon-row{
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "html-icon css-icon js-icon"
+        "react-icon angular-icon vue-icon"
+      ;
+    }
+    .chat-container{
+      padding-top: 35%;
+    }
+    .chat-container, .icon-row{
+      width: 70%;
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 712px) {
+    .icon-row{
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "html-icon css-icon js-icon"
+        "react-icon angular-icon vue-icon"
+      ;
+    }
+    .chat-container{
+      padding-top: 45%;
+    }
+    .chat-container, .icon-row{
+      width: 70%;
+    }
+  }
+  
+  @media (min-width: 0px) and (max-width: 480px) {
+    .icon-row{
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "html-icon css-icon js-icon"
+        "react-icon angular-icon vue-icon"
+      ;
+    }
+    .chat-container{
+      padding-top: 75%;
+    }
+    .chat-container, .icon-row{
+      width: 100%;
+    }
+  }
