@@ -19,6 +19,9 @@ app.get('*', (req, res) => {
 
 //Route handler for POST requests to "/api" 
 app.post("/api", async (req, res) =>{
+    //Stores the result from the ChatGPT API
+    let result;
+
     //Stores the request body (all the chat messages passed in as a payload)
     const apiMessages = req.body;
 
@@ -46,13 +49,18 @@ app.post("/api", async (req, res) =>{
     //Stores the ChatGPT API URL in a variable
     const URL = "https://api.openai.com/v1/chat/completions";
 
-    //Makes a POST request to the ChatGPT API (sends a message to ChatGPT)
-    const result = await axios.post(URL, stringifyApiRequestBody, {
-      headers: {
-        'Authorization': 'Bearer ' + API_KEY,
-        'Content-Type': 'application/json'
-      }
-    });
+    try{
+      //Makes a POST request to the ChatGPT API (sends a message to ChatGPT)
+      result = await axios.post(URL, stringifyApiRequestBody, {
+        headers: {
+          'Authorization': 'Bearer ' + API_KEY,
+          'Content-Type': 'application/json'
+        }
+      });
+    } catch (error) {
+      //If the request fails - displays the error in the console
+      console.error('The following error occurred: ', error)
+    }
     
     //Stores the response given by ChatGPT
     const responseData = result.data;
