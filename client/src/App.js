@@ -66,7 +66,6 @@ function App() {
 
   //Handles send events (when user sends a message to ChatGPT)
   const handleSend = async (message) => {
-    //Checks if ChatGPT is typing/responding - if true, then display alert and return
     if(isTyping === true){
       alert("Please wait for ChatGPT to respond.");
       return;
@@ -90,23 +89,21 @@ function App() {
     //Executes the send message to ChatGPT function - passes in an array of all messages (includes most recent message & the sender "user" or "ChatGPT")
     await processMessageToChatGPT(newMessages);
     };
+    
   };
 
   //Function that sends a message to ChatGPT - recieves an array of all messages from the chat, passed in via the handleSend event handler
-  async function processMessageToChatGPT(chatMessages) { 
+  async function processMessageToChatGPT(newMessages) { 
     //Converts the messages array into the format required by the ChatGPT API - creates a new array of messages in a format required by ChatGPT
-    let apiMessages = convertMessageFormat(chatMessages);
+    let apiMessages = convertMessageFormat(newMessages);
 
     //Makes a request to the ChatGPT API (sends a message to ChatGPT)
     let responseFromChatGPT = await makeApiRequest(apiMessages);
 
-    //Extracts the response provided by ChatGPT
-    let extractedMessage = responseFromChatGPT.data.choices[0].message.content;
-    
     //Adds the response to the array of chat messages
     setMessages(
       //Current array of messages ...chatMessages , new message from ChatGPT, "ChatGPT" is case sensitive
-      [...chatMessages, {message: extractedMessage, sender: "ChatGPT"}]
+      [...newMessages, {message: responseFromChatGPT, sender: "ChatGPT"}]
     );
 
     //Turns off the ChatGPT typing icon as ChatGPT has responded
