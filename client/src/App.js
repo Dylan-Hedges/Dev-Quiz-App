@@ -66,6 +66,11 @@ function App() {
 
   //Handles send events (when user sends a message to ChatGPT)
   const handleSend = async (message) => {
+    //Checks if ChatGPT is typing/responding - if true, then display alert and return
+    if(isTyping === true){
+      alert("Please wait for ChatGPT to respond.");
+      return;
+    }else{
     //Creates a message object - message object consists of message + direction + user
     const newMessage = {
       message,
@@ -84,6 +89,7 @@ function App() {
 
     //Executes the send message to ChatGPT function - passes in an array of all messages (includes most recent message & the sender "user" or "ChatGPT")
     await processMessageToChatGPT(newMessages);
+    };
   };
 
   //Function that sends a message to ChatGPT - recieves an array of all messages from the chat, passed in via the handleSend event handler
