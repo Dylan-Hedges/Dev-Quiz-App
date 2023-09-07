@@ -1,12 +1,12 @@
 //Gives functional component state
 import React, {useEffect, useState} from 'react';
-import './App.css'
 import {convertMessageFormat} from './utils/convertMessageFormat';
 import {makeApiRequest} from './api/makeApiRequest';
 //Imports chat component styling
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 //Imports chat components
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
+import './App.css'
 import htmlIcon from './assets/images/fontawesome-free-6.4.2-web/svgs/brands/html5.svg'; 
 import cssIcon from './assets/images/fontawesome-free-6.4.2-web/svgs/brands/css3-alt.svg'; 
 import javascriptIcon from './assets/images/fontawesome-free-6.4.2-web/svgs/brands/js.svg'; 
@@ -15,6 +15,7 @@ import angularIcon from './assets/images/fontawesome-free-6.4.2-web/svgs/brands/
 import vueIcon from './assets/images/fontawesome-free-6.4.2-web/svgs/brands/vuejs.svg'; 
 
 function App() {
+  
   
   //State that stores all chat messages 
   const [messages, setMessages] = useState([
@@ -28,6 +29,32 @@ function App() {
   //State to track if ChatGPT is typing - default is false
   const [isTyping, setIsTyping] = useState(false);
 
+  //Runs on each re-render as a result of a change to the 'messages' state
+  useEffect(() => {
+    //Selects the container element for chat messages using its data attribute
+    const element = document.querySelector('[data-cs-message-list]');
+    //Checks if the message container element exists
+    if (element) {
+      //Enables touch action when using mobile devices (swipe up/down)
+      element.style.touchAction = 'auto';
+      //Selects all individual elements (messages) within the container - stored in an array
+      const sections = element.querySelectorAll('section');
+      //Checks if there are any message sections found
+      if (sections.length > 0) {
+        //Selects the last message section - the most recent message
+        const lastSection = sections[sections.length - 1];
+        //Retrieves the total height of the entire document
+        const scrollHeight = document.body.scrollHeight;
+        //Calculates the height of the last message section plus an additional 400 pixels to center the response in the screen
+        const lastSectionHeight = lastSection.clientHeight + 400;
+        //Calculates the amount to scroll to ensure the last message is visible
+        const scrollToAmount = scrollHeight - lastSectionHeight;
+        //Scrolls to the calculated amount to display the most recent message
+        window.scrollTo(0, scrollToAmount);
+      }
+    }
+  }, [messages]);
+  
   //Click handler for icons - Send message to ChatGPT depending on icon clicked
   const handleClick = async(languageType) =>{
     //Creates a blank string mesage
