@@ -20,7 +20,7 @@ function App() {
   //State that stores all chat messages 
   const [messages, setMessages] = useState([
     {
-      message: "Hello, click on one of the above icons to get a question!",
+      message: "Hello, select one of the above icons to get a question!",
       sentTime: "just now",
       sender: "ChatGPT"
     }

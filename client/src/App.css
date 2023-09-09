@@ -49,20 +49,34 @@
   }
   
   .chat-container{
-    grid-area: chat-container;
     margin-left: auto;
     margin-right: auto;
-    display: grid;
-    /*For this grid creates 1 column at 100%*/
-    grid-template-columns: 100%;
-    /*Assigns the grid item to that column*/
-    grid-template-areas: 
-      "main-container";
   }
   
   .main-container{
-    grid-area: main-container;
     width: 100%;
+  }
+
+ /*Overrides default styling for chat container*/
+  .cs-main-container{
+    border: 0;
+  }
+
+  /*Overrides default styling for message input field - fixes it to bottom of the page*/
+  .cs-chat-container .cs-message-input{
+    position: fixed;
+    bottom: 0;
+    border: 0;
+  }
+
+   /*Overrides default styling for message background colour */
+  .cs-message__content{
+    background-color: #F5F5F5;
+  }
+
+  /*Overrides default styling for send icon */
+  .cs-message-input__tools{
+    margin-right: 20px;
   }
   
   /*Media Query for screen sizes 1201px and up*/
@@ -76,13 +90,19 @@
       ;
     }
     .chat-container{
-      padding-top: 10%;
+      padding: 12% 0 140px 0;
     }
 
     .chat-container, .icon-row{
-      width: 60%;
+      width: 50%;
     }
-    
+    .cs-chat-container .cs-message-input, .cs-chat-container .cs-message-input{
+      width: 50%;
+      padding-bottom: 100px;
+    }
+    .cs-chat-container .cs-message-input{
+      padding-bottom: 90px;
+    }
   }
 
   @media (min-width: 891px) and (max-width: 1200px) {
@@ -92,11 +112,17 @@
         "html-icon css-icon js-icon react-icon angular-icon vue-icon"
       ;
     }
+    .icon-style{
+      height: 110px;
+    }  
     .chat-container{
-      padding-top: 15%;
+      padding: 15% 0 140px 0;
     }
-    .chat-container, .icon-row{
+    .chat-container, .icon-row, .cs-chat-container .cs-message-input{
       width: 60%;
+    }
+    .cs-chat-container .cs-message-input{
+      padding-bottom: 90px;
     }
   }
   
@@ -108,11 +134,20 @@
         "react-icon angular-icon vue-icon"
       ;
     }
-    .chat-container{
-      padding-top: 35%;
+    .icon-style{
+      height: 110px;
+    }  
+    .icon-style{
+      height: 100px;
     }
-    .chat-container, .icon-row{
+    .chat-container{
+      padding: 30% 0 140px 0;
+    }
+    .chat-container, .icon-row, .cs-chat-container .cs-message-input{
       width: 70%;
+    }
+    .cs-chat-container .cs-message-input{
+      padding-bottom: 90px;
     }
   }
   
@@ -124,11 +159,17 @@
         "react-icon angular-icon vue-icon"
       ;
     }
-    .chat-container{
-      padding-top: 45%;
+    .icon-style{
+      height: 95px;
     }
-    .chat-container, .icon-row{
-      width: 70%;
+    .chat-container{
+      padding: 40% 0 140px 0;
+    }
+    .chat-container, .icon-row, .cs-chat-container .cs-message-input{
+      width: 80%;
+    }
+    .cs-chat-container .cs-message-input{
+      padding-bottom: 90px;
     }
   }
   
@@ -140,10 +181,16 @@
         "react-icon angular-icon vue-icon"
       ;
     }
-    .chat-container{
-      padding-top: 75%;
+    .icon-style{
+      height: 75px;
     }
-    .chat-container, .icon-row{
+    .chat-container{
+      padding: 50% 0 55px 0;
+    }
+    .chat-container, .icon-row, .cs-chat-container .cs-message-input{
       width: 100%;
+    }
+    .cs-chat-container .cs-message-input{
+      padding-bottom: 10px;
     }
   }
