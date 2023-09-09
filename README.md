@@ -15,7 +15,7 @@ This application is designed to assess and test your abilities by engaging you i
 
 ## How to Use
 
-1. **Access the App**: Visit [XXXXX] to access the Dev-Quiz Web App.
+1. **Access the App**: Click [here](https://dev-quiz-application-e66b5490dae6.herokuapp.com/) to access the Dev-Quiz Web App.
 
 2. **Initiate a Conversation**: Choose a topic or subject area you'd like to be tested on. Click one of the icons along the top of the screen initiate a conversation with ChatGPT.
 
